@@ -47,6 +47,8 @@ During the Red Team engagement, I attempted to get Cobalt Strike working with th
 ## Instructions
 1. Standup Red Team Azure Infrastructure that will be used as the Command & Control by following my blog post [The Art of the Device Code Phish](https://0xboku.com/2021/07/12/ArtOfDeviceCodePhish.html) to setup:
   + Azure Account Subscription
+    + *When creating an Azure Account, help the Microsoft DFIR team by attributing your account to your Red Team organization. This helps save time for their team when they are investigating if you are a real threat, performing threat emulation services, or performing offensive security research.
+    + See [Nick Carr- Lead, Cyber Crime Intelligence / Investigations @Microsoft](https://twitter.com/ItsReallyNick/status/1290850096683388930) for more insight.
   + Azure Active Directory Tenant
   + Office 365 for Azure Active Directory
   + Create a user for the Outlook Command & Control mailbox
