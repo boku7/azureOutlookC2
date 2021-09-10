@@ -5,6 +5,8 @@ _Control a compromised Windows Device from your Outlook mailbox._
 
 ![](/assets/azureOutlookC2Demo.gif)
 
+_If you have any information about similar projects, CTI info about this TTP being used in the wild by APT/ransomware-groups, defense advice, recommendations for Red Teamers interested in Azure C2 threat emulation, or any other information that would be a good add to this blog/readme, please contact me or submit a Pull Request. Thank you!_
+
 ## About Azure Outlook C2
 This project consists of an implant that "beacons" out to an Attacker Controlled Azure Infrastructure. The implant is hardcoded with an Azure Refresh Token when compiled by the Attacker. When the implant is executed on a compromised Windows device, it accesses the Attackers Draft mailbox via the Microsoft Graph API. The implant reads the Attackers mailbox to receive instructions. The implant executes those instructions and sends the standard output back to the Attacker via creation of new Draft messages. The implant will continue this behavior until the host process ends.
 
@@ -16,7 +18,6 @@ Steve introduced me to Azure Device Code Phishing. During this time I dived deep
 While creating TokenTactics and experimenting with the MS Graph API, I discovered it was possible to use the Microsoft Graph API as a C2 channel. There are many different ways to use the MS Graph API as a C2 channel, and I am not the only person (or the first) to discover this. [VX-Underground](https://twitter.com/vxunderground), created by [@smelly__vx](https://twitter.com/smelly__vx) - the creator/publisher of the HellsGate technique, released information last month that [the North Korean Advanced Persistent Threat (APT) group "InkySquid" (AKA ScarCruft and APT37) uses the Microsoft Graph API for C2 operations](https://twitter.com/vxunderground/status/1429867158075498506). After releasing a teaser of this project on [Twitter](https://twitter.com/0xBoku/status/1435788324044640260) & [LinkedIn](https://www.linkedin.com/posts/bobby-cooke_azure-outlook-c2-activity-6841556676315901952-XIvN), several DFIR professionals commented that this technique of using the Microsoft Graph API for C2 operations is actively being used by ransomware groups in the wild, dating back months.
 
 During the Red Team engagement, I attempted to get Cobalt Strike working with the MS Graph API as the C2 channel. Unfortunately, I failed, but this is still a future goal. The issue I face with getting this to work with Cobalt Strike, is that the MS Graph API uses 2 tokens for communications. The first token is the Refresh Token which can last up to 90 days. The second token, the Access Token, is a temporary token that last around an hour. Direct communications to the MS Graph API are done via authenticating with the Access Token. Once an Access Token expires, the Refresh Token can be used to get new Access Tokens. Since I am still new to Red Teaming & Cobalt Strike development, I could not figure out how to use the Cobalt Strike Malleable C2 profile to support constantly getting new Access Tokens and sending these changing Access Tokens in the `Authorization` header of HTTPS beacon's requests. Since releasing the teaser on Twitter, [Joe Vest](https://twitter.com/joevest), [Alfie Champion](https://twitter.com/ajpc500), and other rockstars of the community have given me some epic direction on how to get this to work with Cobalt Strike! Hopefully there will be a Cobalt Strike follow up to this project in the future ;) 
-
 
 ![](/assets/diagram.png)
 
@@ -107,6 +108,8 @@ bobby.cooke$ bash compile.sh
 ### [Mehmet Ergene (@Cyb3rMonk)](https://twitter.com/Cyb3rMonk) Detection Advice
 1. "Baselining applications connecting to Graph API and checking the anomalies might be an idea. Could be bypassed easily though."
 2. "As always, [detecting beaconing traffic](https://t.co/gNWIpGbuty?amp=1). (I'll make an improvement to cover Graph API and similar stuff)"
+### [F-Secure](https://www.f-secure.com/gb-en/consulting/our-thinking/rip-office365-command-and-control) - Shared from [Alfie Champion](https://twitter.com/ajpc500)
++ "Microsoft is an example of one such organization which has proactively taken steps to defend organizations from abuse of its services. It has recently developed the capability to detect and block malicious use of Azure Applications. Specifically, F-Secure has observed that any application used in the C3 framework (such as OneDrive365 and Outlook365 (O365) is now detected as malicious, and subsequently disabled by Microsoft (within approximately three hours)."
 
 ## Credits / References
 + [Sektor7 Malware Development Courses](https://institute.sektor7.net/red-team-operator-malware-development-essentials)
@@ -117,3 +120,13 @@ bobby.cooke$ bash compile.sh
 + [Microsoft WinInet](https://docs.microsoft.com/en-us/windows/win32/api/wininet/nf-wininet-httpsendrequest)
 + [StackOverFlow - Create Process and Capture stdout](https://stackoverflow.com/questions/42402673/createprocess-and-capture-stdout)
 + [Microsoft - Creating a Child Process with Redirected Input and Output](https://docs.microsoft.com/en-us/windows/win32/procthread/creating-a-child-process-with-redirected-input-and-output?redirectedfrom=MSD)
+
+## Cool Projects & Articles to Check-Out that are Similar
+#### F-Secure C3 - Custom Command & Control
++ "C3 was built in response to this requirement. It is a tool that allows Red Teams to rapidly develop and utilise esoteric command and control channels (C2)."
++ [RIP OFFICE365 COMMAND AND CONTROL – WE HARDLY KNEW YOU](https://www.f-secure.com/gb-en/consulting/our-thinking/rip-office365-command-and-control)
++ [ F-Secure C3 - Custom Command & Control GitHub Repo](https://github.com/FSecureLABS/C3)
+#### Callidus by [Chirag Savla](https://twitter.com/chiragsavla94)
++ "It (Callidus) is developed using .net core framework in C# language. Allows operators to leverage O365 services for establishing command & control communication channel. It usages Microsoft Graph APIs for communicating with O365 services."
++ [3xpl01tc0d3r/Callidus GitHub Repo](https://github.com/3xpl01tc0d3r/Callidus)
++ [Introduction to Callidus - Blog Post](https://3xpl01tc0d3r.blogspot.com/2020/03/introduction-to-callidus.html)
