@@ -123,7 +123,7 @@ bobby.cooke$ bash compile.sh
 + [StackOverFlow - Create Process and Capture stdout](https://stackoverflow.com/questions/42402673/createprocess-and-capture-stdout)
 + [Microsoft - Creating a Child Process with Redirected Input and Output](https://docs.microsoft.com/en-us/windows/win32/procthread/creating-a-child-process-with-redirected-input-and-output?redirectedfrom=MSD)
 
-## Cool Projects & Articles to Check-Out that are Similar
+## Cool Projects/Research/Blogs That are Similar
 #### F-Secure C3 - Custom Command & Control
 + "C3 was built in response to this requirement. It is a tool that allows Red Teams to rapidly develop and utilise esoteric command and control channels (C2)."
 + [RIP OFFICE365 COMMAND AND CONTROL – WE HARDLY KNEW YOU](https://www.f-secure.com/gb-en/consulting/our-thinking/rip-office365-command-and-control)
