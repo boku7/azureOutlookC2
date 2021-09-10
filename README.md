@@ -132,3 +132,5 @@ bobby.cooke$ bash compile.sh
 + "It (Callidus) is developed using .net core framework in C# language. Allows operators to leverage O365 services for establishing command & control communication channel. It usages Microsoft Graph APIs for communicating with O365 services."
 + [3xpl01tc0d3r/Callidus GitHub Repo](https://github.com/3xpl01tc0d3r/Callidus)
 + [Introduction to Callidus - Blog Post](https://3xpl01tc0d3r.blogspot.com/2020/03/introduction-to-callidus.html)
+#### Azure Application Proxy C2 - [Adam Chester (@\_xpn\_)](https://twitter.com/\_xpn\_)
++ [Azure Application Proxy C2 - Research Blog](https://blog.xpnsec.com/azure-application-proxy-c2/)
