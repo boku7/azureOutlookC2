@@ -1,7 +1,7 @@
 ## Azure Outlook C2
 Azure Outlook Command &amp; Control that uses Microsoft Graph API for C2 communications &amp; data exfiltration. 
 
-_Control a compromised Windows Device from your Outlook mailbox._
+_Remotely Control a compromised Windows Device from your Outlook Mailbox._
 
 ![](/assets/azureOutlookC2Demo.gif)
 
