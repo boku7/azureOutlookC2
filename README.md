@@ -92,14 +92,8 @@ bobby.cooke$ bash compile.sh
 ## Initial Project Goals
 + Make a working proof of concept that uses the Microsoft Graph API for a C2 channel and control a computer from my email.
 
-## Future Project Goals
-+ Implement this as a C2 channel for Cobalt Strike.
-
 ## What This Project Is
 + This project is a proof of concept, which demonstrates how an Attacker can use the Microsoft Graph API for C2 operations.
-+ The simple "beacon" in this project is _NOT OPSEC SAFE_.
-  + There are some hilarious bugs in this beacon that can result in some nasty crashes. Specifically with buffers and `sprintf()` ;)
-  + If you are interested in using this project for Red Team engagements, you will have to put in the work.
 + This project is intended for other offensive security researchers to learn from.
 + I have not personally come up with any great ways to defend or detect this C2 channel. My hope is that by supplying this to greater defender minds than myself, it will result in some awesome defensive techniques. 
 
