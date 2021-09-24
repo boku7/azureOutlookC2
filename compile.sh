@@ -1,5 +1,5 @@
 # Compile as EXE
-x86_64-w64-mingw32-gcc -m64 -mwindows -Os azureOutlookC2.c -o azureOutlookC2.exe -lwininet
+x86_64-w64-mingw32-gcc -m64 -mwindows azureOutlookC2.c -o azureOutlookC2.exe -masm=intel
 # Shellcode Compile for Dropper
 x86_64-w64-mingw32-gcc -m64 -mwindows -c azureOutlookC2.c -o azureOutlookC2.o -masm=intel -Wall -m64 -fno-asynchronous-unwind-tables -nostdlib -fno-ident -Wl,-Tlinker.ld,--no-seh
 # MacOS Get Shellcode
