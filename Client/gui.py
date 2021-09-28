@@ -1,5 +1,5 @@
 import sys, requests, re
-from PyQt6 import QtCore, QtGui, QtWidgets, Qt
+from PyQt6 import QtCore, QtGui, QtWidgets
 from colorama import (Fore as F, Back as B, Style as S)
 from colors import TextColors
 from StartDialog import StartDialogUI
