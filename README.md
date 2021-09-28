@@ -3,7 +3,7 @@ Azure Outlook Command &amp; Control that uses Microsoft Graph API for C2 communi
 
 _Remotely Control a compromised Windows Device from your Outlook Mailbox._
 
-## New Update! (09/27/21)
+## Update (09/27/21)
 + Azure Outlook C2 now has a cross-platform Graphical User Interface (GUI)!
   + Big shoutout to [Paul Ungur (@C5pider)](https://twitter.com/C5pider) for teaching me how to create a C2 GUI with [QT](https://www.qt.io/)!
 

