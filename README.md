@@ -11,6 +11,7 @@ _Remotely Control a compromised Windows Device from your Outlook Mailbox._
 ![](/assets/azureC2Gui.gif)
 
 ### Controlling a Computer via Outlook Mailbox
++ The update supports original Outlook Mailbox control.
 ![](/assets/azureOutlookC2Demo.gif)
 
 _If you have any information about similar projects, CTI info about this TTP being used in the wild by APT/ransomware-groups, defense advice, recommendations for Red Teamers interested in Azure C2 threat emulation, or any other information that would be a good add to this blog/readme, please contact me or submit a Pull Request. Thank you!_
