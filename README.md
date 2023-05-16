@@ -6,7 +6,7 @@ _Remotely Control a compromised Windows Device from your Outlook Mailbox._
 #### Creators: [Bobby Cooke (@0xBoku)](https://twitter.com/0xBoku) &  [Paul Ungur (@C5pider)](https://twitter.com/C5pider) 
 
 ## CTI Threat update (02/13/22)
-Elastic Security Labs is phas discovered active intrusions in the wild using SIESTAGRAPH. SIESTAGRAPH interacts with Microsoft’s GraphAPI for command and control using Outlook and OneDrive. Check out their awesome malware analysis blogs on Azure Outlook C2 communications below.
+Elastic Security Labs has discovered active intrusions in the wild using SIESTAGRAPH. SIESTAGRAPH interacts with Microsoft’s GraphAPI for command and control using Outlook and OneDrive. Check out their awesome malware analysis blogs on Azure Outlook C2 communications below.
 
 - https://www.elastic.co/security-labs/siestagraph-new-implant-uncovered-in-asean-member-foreign-ministry
 - https://www.elastic.co/security-labs/update-to-the-REF2924-intrusion-set-and-related-campaigns
